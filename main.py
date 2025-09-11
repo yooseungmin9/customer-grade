@@ -52,8 +52,7 @@ def load_data(path: str = "data/customer_data.csv") -> pd.DataFrame:
         원본 DataFrame
     """
     # 한글 칼럼 가정으로 cp949 기본
-    return pd.read_csv(path, encoding="cp949")
-
+    return pd.read_csv(path, encoding="utf-8")
 
 def select_columns(df: pd.DataFrame) -> pd.DataFrame:
     """분석에 필요한 칼럼만 선택합니다.
