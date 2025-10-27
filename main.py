@@ -1,5 +1,3 @@
-# app.py
-# -*- coding: utf-8 -*-
 """
 Streamlit 고객 등급(클러스터) 예측 앱
 - 버튼 클릭으로 학습 시작, 진행률 표시
@@ -228,8 +226,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-# 사용 예시
-# 1) repo 루트에 data/customer_data.csv 존재
-# 2) pip install -r requirements.txt
-# 3)
