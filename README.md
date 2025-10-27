@@ -2,7 +2,7 @@
 
 This is a machine learning application that predicts customer tier classifications for retail stores using the following features.
 
-✅ annual_income: 연소득 (원 단위 추정)  
+✅ annual_income: 연소득 (원 단위)  
 ✅ Recency: 최근 구매 후 경과일수  
 ✅ Monetary : 총 구매 합산액  
 ✅ num_purchase_web: 온라인 구매 횟수  
