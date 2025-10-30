@@ -174,18 +174,17 @@ def pca_scatter(df_num: pd.DataFrame, labels: np.ndarray, tier_map: Dict) -> alt
     ).properties(height=450, title="고객 세분화 분포도")
 
 def feature_importance_chart(model: LGBMClassifier, feature_cols: list) -> alt.Chart:
-    """특성 중요도 차트 (✅ 수정됨)."""
+    """특성 중요도 차트."""
     imp = pd.Series(
         model.feature_importances_,
         index=[COLUMN_NAME_KR.get(c, c) for c in feature_cols]
     ).sort_values(ascending=True)
 
-    # ✅ 수정: DataFrame으로 명시적으로 변환
     imp_df = imp.reset_index(name="중요도").rename(columns={"index": "특성"})
 
-    return alt.Chart(imp_df).mark_barh().encode(
-        x="중요도:Q",
-        y=alt.Y("특성:N", sort="-x")
+    return alt.Chart(imp_df).mark_bar().encode(
+        y=alt.Y("특성:N", sort="-x"),
+        x="중요도:Q"
     ).properties(height=300, title="특성 중요도 분석")
 
 def cluster_stats(df_labeled: pd.DataFrame, tier_map: Dict) -> pd.DataFrame:
