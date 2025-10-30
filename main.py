@@ -1,10 +1,3 @@
-"""
-Streamlit 고객 등급(클러스터) 예측 앱 - 개선 버전
-- 한국어 컬럼명 지원
-- 탭 기반 UI로 직관적인 경험 제공
-- 학습 → 예측 → 시각화 분리
-- 실시간 진행률 표시 및 상세 피드백
-"""
 from __future__ import annotations
 
 import os
@@ -181,13 +174,15 @@ def pca_scatter(df_num: pd.DataFrame, labels: np.ndarray, tier_map: Dict) -> alt
     ).properties(height=450, title="고객 세분화 분포도")
 
 def feature_importance_chart(model: LGBMClassifier, feature_cols: list) -> alt.Chart:
-    """특성 중요도 차트."""
+    """특성 중요도 차트 (✅ 수정됨)."""
     imp = pd.Series(
         model.feature_importances_,
         index=[COLUMN_NAME_KR.get(c, c) for c in feature_cols]
     ).sort_values(ascending=True)
+
+    # ✅ 수정: DataFrame으로 명시적으로 변환
     imp_df = imp.reset_index(name="중요도").rename(columns={"index": "특성"})
-    
+
     return alt.Chart(imp_df).mark_barh().encode(
         x="중요도:Q",
         y=alt.Y("특성:N", sort="-x")
@@ -223,6 +218,13 @@ def main() -> None:
 
     # 데이터 경로 (환경변수 또는 기본값)
     data_path = os.getenv("CUSTOMER_DATA_PATH", "data/customer_data.csv")
+
+    # 캐시 초기화 버튼 (사이드바)
+    with st.sidebar:
+        st.header("⚙️ 설정")
+        if st.button("🔄 캐시 초기화", use_container_width=True):
+            st.cache_data.clear()
+            st.rerun()
 
     # ─────────────────────────────────────────────────────────
     # 1단계: 데이터 로드 및 전처리
