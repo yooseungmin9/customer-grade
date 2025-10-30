@@ -173,20 +173,6 @@ def pca_scatter(df_num: pd.DataFrame, labels: np.ndarray, tier_map: Dict) -> alt
         tooltip=["tier:N", "cluster:N", "x:Q", "y:Q"]
     ).properties(height=450, title="고객 세분화 분포도")
 
-def feature_importance_chart(model: LGBMClassifier, feature_cols: list) -> alt.Chart:
-    """특성 중요도 차트."""
-    imp = pd.Series(
-        model.feature_importances_,
-        index=[COLUMN_NAME_KR.get(c, c) for c in feature_cols]
-    ).sort_values(ascending=True)
-
-    imp_df = imp.reset_index(name="중요도").rename(columns={"index": "특성"})
-
-    return alt.Chart(imp_df).mark_bar().encode(
-        y=alt.Y("특성:N", sort="-x"),
-        x="중요도:Q"
-    ).properties(height=300, title="특성 중요도 분석")
-
 def cluster_stats(df_labeled: pd.DataFrame, tier_map: Dict) -> pd.DataFrame:
     """등급별 통계."""
     stats = df_labeled.groupby("cluster").agg({
@@ -413,10 +399,6 @@ def main() -> None:
                     "확률": pred_proba
                 })
                 st.bar_chart(proba_df.set_index("등급"))
-
-                # 특성 중요도
-                st.subheader("의사결정 근거 (특성 중요도)")
-                st.altair_chart(feature_importance_chart(st.session_state["model"], feature_cols), use_container_width=True)
 
 if __name__ == "__main__":
     main()
