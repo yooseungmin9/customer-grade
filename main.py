@@ -388,8 +388,7 @@ def main() -> None:
                 pred_proba = st.session_state["model"].predict_proba(input_df)[0]
 
                 tier = st.session_state["tier_map"].get(pred, f"cluster {pred}")
-
-                st.balloons()
+                
                 st.success(f"# {tier}")
 
                 # 확률 분포
