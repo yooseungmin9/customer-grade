@@ -186,8 +186,9 @@ def feature_importance_chart(model: LGBMClassifier, feature_cols: list) -> alt.C
         model.feature_importances_,
         index=[COLUMN_NAME_KR.get(c, c) for c in feature_cols]
     ).sort_values(ascending=True)
-
-    return alt.Chart(imp.reset_index().rename(columns={"index": "특성", 0: "중요도"})).mark_barh().encode(
+    imp_df = imp.reset_index(name="중요도").rename(columns={"index": "특성"})
+    
+    return alt.Chart(imp_df).mark_barh().encode(
         x="중요도:Q",
         y=alt.Y("특성:N", sort="-x")
     ).properties(height=300, title="특성 중요도 분석")
