@@ -13,6 +13,8 @@ This is a machine learning application that predicts customer tier classificatio
 Link : https://customer1.streamlit.app/
 
 Image :
-<img width="1512" height="821" alt="Image" src="https://github.com/user-attachments/assets/b52f79b0-b2b0-4cac-8864-c651179177b1" />
-
-<img width="1512" height="821" alt="Image" src="https://github.com/user-attachments/assets/64822188-6042-451c-8202-5903af492f3d" />
+<img width="1920" height="957" alt="Image" src="https://github.com/user-attachments/assets/dc44bca2-4c90-4627-aa72-455b0070aa2d" />
+<img width="1920" height="959" alt="Image" src="https://github.com/user-attachments/assets/6e0a234e-f331-4b63-b301-f7699f11f740" />
+<img width="1920" height="957" alt="Image" src="https://github.com/user-attachments/assets/5030f7be-65e0-47dd-a299-b125a91efbfb" />
+<img width="1920" height="958" alt="Image" src="https://github.com/user-attachments/assets/8202dfd7-4a8e-40ad-aa1c-cc46d67fb14a" />
+<img width="1920" height="957" alt="Image" src="https://github.com/user-attachments/assets/743cbda0-da2c-485a-a3e5-6fb67a495ca7" />
